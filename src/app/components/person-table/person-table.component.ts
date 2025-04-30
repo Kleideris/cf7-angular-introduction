@@ -12,11 +12,28 @@ export class PersonTableComponent {
   @Input() personInput: Person | EPerson | undefined;
 
   name = "Thanasis"
+  addressOrEducation: string = ""
 
   person = {
     givenName: "Androutsos",
     surName: "Androutsos",
     age: 20,
     email: "thanasis@aueb.gr"
+  }
+
+  isPerson(): Boolean {
+    if (this.personInput && 'address' in this.personInput) {
+      this.addressOrEducation = this.personInput.address
+      return 'address' in this.personInput;
+    }
+    return false;
+  }
+
+  isEPerson(): Boolean {
+    if (this.personInput && 'education' in this.personInput) {
+      this.addressOrEducation = this.personInput.education
+      return 'education' in this.personInput;
+    }
+    return false;
   }
 }
