@@ -9,15 +9,15 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Firstname</mat-label>
+        <mat-label>First Name</mat-label>
         <input matInput type="text" formControlName="name">
-        <mat-error>Firstame is required</mat-error>
+        <mat-error>First Name is required</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Lastname</mat-label>
+        <mat-label>Last Name</mat-label>
         <input matInput type="text" formControlName="surname">
-        <mat-error>Lastname is required</mat-error>
+        <mat-error>Last Name is required</mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -36,12 +36,12 @@
       <div class="d-flex gap-2" formGroupName="address">
         <mat-form-field>
           <mat-label>Area</mat-label>
-          <input matInput type="text">
+          <input matInput type="text" formControlName="area">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Road</mat-label>
-          <input type="text" matInput>
+          <input type="text" matInput formControlName="road">
         </mat-form-field>
       </div>
 
@@ -56,13 +56,13 @@
       <mat-form-field>
         <mat-label>Confirm Password</mat-label>
         <input type="password" matInput formControlName="confirmPassword">
-          <!-- @if (form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched) {
+        @if (form.get('confirmPassword')?.hasError('PasswordMismatch')) {
+          <mat-error>Passwords do not match</mat-error>
+        } @else {
+          @if (form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched) {
             <mat-error>Confirm password is missing or invalid</mat-error>
-          } @else {
-            @if (form.get('confirmPassword')?.hasError('PasswordMismatch')) {
-              <mat-error>Passwords do not match</mat-error>
-            }
-          } -->
+          }
+        }
       </mat-form-field>
 
       <button
@@ -70,7 +70,7 @@
         color="primary"
         [disabled]="form.invalid"
         (click)="onSubmit()"
-      >Register
+        >Register
       </button>
     </form>
   </div>
@@ -81,16 +81,16 @@
     </div>
   } @else {
     <div class="alert alert-danger mt-2 w-50">
-      <strong>Error:</strong>  {{registrationStatus.message}}
+      <strong>Error:</strong> {{registrationStatus.message}}
     </div>
   }
 }
 
-  <button
-    class="mt-2"
-    mat-flat-button
-    color="primary"
-    (click)="registerAnother()"
-  >
-    Register Another User
-  </button>
+<button
+  class="mt-2"
+  mat-flat-button
+  color="primary"
+  (click)="registerAnother()"
+>
+  Register Another User
+</button>

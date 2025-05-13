@@ -74,7 +74,7 @@ export class UserRegistrationComponent {
       }
 
     }
-    console.log(data)
+    console.log(data);
     this.userService.registerUser(data)
       .subscribe({
         next: (response) => {
@@ -91,7 +91,9 @@ export class UserRegistrationComponent {
   check_duplicate_email() {
     const email = this.form.get('email')?.value;
 
+
     if (email) {
+      console.log("email", email);
       this.userService.check_duplicate_email(email)
         .subscribe({
           next: (response) => {
@@ -110,6 +112,6 @@ export class UserRegistrationComponent {
 
   registerAnother() {
     this.form.reset()
-    this.registrationStatus = {success: false, message: 'not attempted yet'}
+    this.registrationStatus = {success: false, message: 'Not attempted yet'}
   }
 }
