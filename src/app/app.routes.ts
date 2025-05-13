@@ -28,7 +28,7 @@ export const routes: Routes = [
     path: 'user-registration-example', 
     component: UserRegistrationComponent,
     canActivate: [authGuard, adminRoleGuard]
-   },
+  },
   { path: 'login', component: UserLoginComponent },
   { path: 'welcome', component: WelcomeComponent },
   { path: '', redirectTo:'/welcome', pathMatch:'full' }
