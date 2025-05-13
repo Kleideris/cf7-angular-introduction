@@ -23,13 +23,11 @@
       <mat-form-field>
         <mat-label>Email</mat-label>
         <input matInput type="text" formControlName="email">
-        <!-- @if (form.get('email')?.hasError('duplicateEmail')) {
+        @if (form.get('email')?.hasError('duplicateEmail')) {
           <mat-error>Email is already registered</mat-error>
-        } @else {
-          @if (form.get('email')?.invalid && form.get('email')?.touched) {
-            <mat-error>Email is missing or invalid</mat-error>
-          }
-        } -->
+        } @else if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <mat-error>Email is missing or invalid</mat-error>
+        }
         <mat-error>Email is missing or invalid</mat-error>
       </mat-form-field>
 
@@ -58,10 +56,8 @@
         <input type="password" matInput formControlName="confirmPassword">
         @if (form.get('confirmPassword')?.hasError('PasswordMismatch')) {
           <mat-error>Passwords do not match</mat-error>
-        } @else {
-          @if (form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched) {
-            <mat-error>Confirm password is missing or invalid</mat-error>
-          }
+        } @else if (form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched) {
+          <mat-error>Confirm password is missing or invalid</mat-error>
         }
       </mat-form-field>
 
