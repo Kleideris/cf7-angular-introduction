@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { Credentials, LoggedInUser } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
-import { jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,12 +17,12 @@ import { Router } from '@angular/router';
   styleUrl: './user-login.component.css'
 })
 export class UserLoginComponent {
-  userService = inject(UserService)
+  userService = inject(UserService);
   router = inject(Router);
 
   form = new FormGroup({
     username: new FormControl('', Validators.required),
-    password: new FormControl('',Validators.required)
+    password: new FormControl('', Validators.required)
   })
 
   onSubmit() {
@@ -43,8 +43,8 @@ export class UserLoginComponent {
             username: decodedTokenSubject.username,
             email: decodedTokenSubject.email,
             roles: decodedTokenSubject.roles
-          })
-          console.log('Signal:', this.userService.user$())
+          });
+          console.log('Signal>>>', this.userService.user$())
           this.router.navigate(['user-registration-example'])
         },
         error: (error) => {
