@@ -1,4 +1,4 @@
-import { Inject, Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject, signal, effect } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { User, Credentials, LoggedInUser } from '../interfaces/user';
@@ -12,9 +12,19 @@ const API_URL_AUTH = `${environment.apiURL}/api/auth`
 })
 export class UserService {
   http: HttpClient = inject(HttpClient)
-  router = Inject(Router)
+  router = inject(Router)
 
   user$ = signal<LoggedInUser | null>(null)
+
+  constructor() {
+    effect(() => {
+      if (this.user$()) {
+        console.log('User Logged In:', this.user$()?.username);
+      } else {
+        console.log('No User Logged In');
+      }
+    })
+  }
 
   registerUser(user: User) {
     return this.http.post<{status: boolean, data: User}>(`${API_URL}`, user)
